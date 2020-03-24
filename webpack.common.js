@@ -14,9 +14,12 @@ module.exports = {
         })
     ],
     output: {
-        filename: '[name].[chunkhash].js',
-        chunkFilename: '[name].[chunkhash].chunk.js',
+        filename: '[name].bundle.js',
+        chunkFilename: '[name].chunk.js',
         path: path.resolve(__dirname, 'dist')
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js']
     },
     module: {
         rules: [
@@ -38,6 +41,11 @@ module.exports = {
                 use: [
                     'file-loader'
                 ]
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
             }
         ]
     }
