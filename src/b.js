@@ -6,8 +6,8 @@ export default function (params) {
     context.set('bbb', '111111111111')
     context.set('ccc', '222222222222')
     let obj = context.get()
-    let cc=c.get()
-    console.log(obj,cc)
-    
+    let cc = c.get()
+    console.log(obj, cc)
+
     console.log('b.js')
 }

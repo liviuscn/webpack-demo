@@ -15,7 +15,7 @@ module.exports = merge(common, {
             "/share-oss/*": "http://debug.aierp.cn:8085/"
         }
     },
-    plugins:[
+    plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ]

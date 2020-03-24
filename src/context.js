@@ -12,7 +12,6 @@ class context {
     }
 }
 
+const instance = new context();
 
-const instance = new context()
-
-export default instance
+export default instance;

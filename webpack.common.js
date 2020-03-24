@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
     entry: {
         app: './src/index.js',
@@ -11,13 +11,15 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Production'
-        })
+        }),
+        new CopyWebpackPlugin([
+            {
+                from: "./version.txt",
+                to: "version.txt",
+                toType: "template"
+            }
+        ])
     ],
-    output: {
-        filename: '[name].bundle.js',
-        chunkFilename: '[name].chunk.js',
-        path: path.resolve(__dirname, 'dist')
-    },
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
     },
