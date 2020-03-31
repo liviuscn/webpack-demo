@@ -1,10 +1,10 @@
 
 import _ from 'lodash';
 import './style.css';
-import a from "./a";
-import b from "./b";
-a()
-b()
+import A from "./a";
+import B from "./b";
+new A()
+new B().fn()
 function component() {
     var element = document.createElement('div');
 

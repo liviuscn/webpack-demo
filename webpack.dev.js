@@ -16,7 +16,7 @@ module.exports = merge(common, {
         }
     },
     plugins: [
-        new webpack.NamedModulesPlugin(),
+        new webpack.NamedModulesPlugin(),//将使用模块的路径，缓存时hash不变，测试环境使用，速度慢
         new webpack.HotModuleReplacementPlugin()
     ]
 });

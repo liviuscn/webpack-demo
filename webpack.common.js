@@ -1,16 +1,18 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
     entry: {
         app: './src/index.js',
         vendor: [
-            'lodash'
+            'a'
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Production'
+            title:'webpack Demo',
+            template: './src/index.html'
         }),
         new CopyWebpackPlugin([
             {
@@ -21,7 +23,13 @@ module.exports = {
         ])
     ],
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js', '.jsx'],
+        alias:{
+            'a':'./src/a.js'
+        }
+    },
+    externals: {
+        lodash: 'lodash'
     },
     module: {
         rules: [

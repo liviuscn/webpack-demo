@@ -18,14 +18,14 @@ module.exports = merge(common, {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
-        new webpack.HashedModuleIdsPlugin()
+        new webpack.HashedModuleIdsPlugin(),//vendor缓存保持hash不变
     ],
     optimization: {
-        minimizer: [
-            new UglifyJsPlugin({
-                sourceMap: true,
-            }),
-        ],
+        // minimizer: [
+        //     new UglifyJsPlugin({
+        //         sourceMap: true,
+        //     }),
+        // ],
         splitChunks: {
             chunks: "async",
             minSize: 30000,
@@ -35,7 +35,7 @@ module.exports = merge(common, {
             automaticNameDelimiter: '~',
             name: true,
             cacheGroups: {
-                vendors: {
+                vendor: {
                     test: /[\\/]node_modules[\\/]/,
                     priority: -10
                 },
