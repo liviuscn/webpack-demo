@@ -6,12 +6,12 @@ module.exports = {
     entry: {
         app: './src/index.js',
         vendor: [
-            'a'
+            'lodash', 'aaa'
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title:'webpack Demo',
+            title: 'webpack Demo',
             template: './src/index.html'
         }),
         new CopyWebpackPlugin([
@@ -24,12 +24,13 @@ module.exports = {
     ],
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.jsx'],
-        alias:{
-            'a':'./src/a.js'
+        alias: {
+            'aaa': './src/a.js',
+            'bbb': './src/b.js',
         }
     },
     externals: {
-        lodash: 'lodash'
+        "bbb": 'bbb'
     },
     module: {
         rules: [

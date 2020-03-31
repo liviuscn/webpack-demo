@@ -1,12 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ManifestPlugin = require("webpack-manifest-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-    devtool: 'source-map',
+    // devtool: 'source-map',
     mode: "production",
     output: {
         filename: '[name].[chunkhash:8].bundle.js',
@@ -19,37 +20,20 @@ module.exports = merge(common, {
             'process.env.NODE_ENV': JSON.stringify('production')
         }),
         new webpack.HashedModuleIdsPlugin(),//vendor缓存保持hash不变
+        new ManifestPlugin()
     ],
     optimization: {
-        // minimizer: [
-        //     new UglifyJsPlugin({
-        //         sourceMap: true,
-        //     }),
-        // ],
         splitChunks: {
-            chunks: "async",
-            minSize: 30000,
-            minChunks: 1,
-            maxAsyncRequests: 5,
-            maxInitialRequests: 3,
-            automaticNameDelimiter: '~',
-            name: true,
             cacheGroups: {
-                vendor: {
-                    test: /[\\/]node_modules[\\/]/,
-                    priority: -10
-                },
                 commons: {
                     name: "commons",
                     chunks: "initial",
                     minChunks: 2
-                },
-                default: {
-                    minChunks: 2,
-                    priority: -20,
-                    reuseExistingChunk: true
                 }
             }
-        }
+        },
+        // minimizer: [
+        //     new UglifyJsPlugin(),
+        // ],
     }
 });
